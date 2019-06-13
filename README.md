@@ -16,7 +16,7 @@ Data is stored in local MySQL. Node.js backend provides TypeORM + GraphQL server
 
 File contents are as below - replace indicated entries with your db access data.
 
-```
+```json
 {
    "type": "mysql",
    "host": "**fill in your db hostname**",
