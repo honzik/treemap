@@ -16,7 +16,7 @@ const typeDefs = `
 
   type Query {
     hello(name: String): String!
-    note(id: Int!): Note!
+    note(id: Int!): Note
     notes: [Note!]!
   }
 
@@ -25,7 +25,9 @@ const typeDefs = `
 const resolvers: ResolverMap = {
   Query: {
     hello: (_: any, { name }: any) => `hhello ${name || "World"}`,
-    note: (_, {id}) => Note.findOne(id),
+    note: (_, {id}) => {      
+      return Note.findOne({where: { id }, relations: ["parentNote", "childNotes"]})
+    },
     notes: () => Note.find({relations: ["parentNote", "childNotes"]}),
   },
 };
